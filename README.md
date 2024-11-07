@@ -1,4 +1,5 @@
 My progress for Homework 1
+
 03.11.2024
 -the task "Longest Continuous Increasing Sequence" and "Intersection of Two Arrays" has been completed
 -the "Merge Sorted Array" task has been completed
