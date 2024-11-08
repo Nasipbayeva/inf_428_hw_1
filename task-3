@@ -1,0 +1,32 @@
+import math
+
+def time_to_cyclic_features(hour):
+    sin = math.sin(2 * math.pi * hour / 24)
+    cos = math.cos(2 * math.pi * hour / 24)
+    return sin, cos
+
+def cyclic_time_difference(hour1, hour2):
+    diff = abs(hour1 - hour2)
+    return min(diff, 24 - diff)
+
+#unittest
+import unittest
+
+class TestTimeCyclicFeatures(unittest.TestCase):
+    def test_time_to_cyclic_features(self):
+        self.assertAlmostEqual(time_to_cyclic_features(0), (0, 1), places=5)
+        self.assertAlmostEqual(time_to_cyclic_features(6), (1, 0), places=5)
+        self.assertAlmostEqual(time_to_cyclic_features(12), (0, -1), places=5)
+        self.assertAlmostEqual(time_to_cyclic_features(18), (-1, 0), places=5)
+
+    def test_cyclic_time_difference(self):
+        self.assertEqual(cyclic_time_difference(23, 1), 2)
+        self.assertEqual(cyclic_time_difference(1, 23), 2)
+        self.assertEqual(cyclic_time_difference(0, 12), 12)
+        self.assertEqual(cyclic_time_difference(3, 9), 6)
+        self.assertEqual(cyclic_time_difference(22, 6), 8)
+
+def run_tests():
+    unittest.TextTestRunner().run(unittest.makeSuite(TestTimeCyclicFeatures))
+
+run_tests()
